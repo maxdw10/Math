@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{Geometry of Lines in $\mathbb{P}^3$}
+\author{Max Weinstein}
+\date{December 2023}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+In modern terms, a collection of linear subspaces of a certain dimension relative to a larger vector space they live in is called a \textit{Grassmanian}. From this perspective, the collection of all lines in $\mathbb{P}^3$ is the Grassmanian of 1-dimensional linear subspaces of 3-dimensional projective space, or alternatively the Grassmanian of 2-dimensional linear subspaces of 4-dimensional affine space. \\
+\\
+Before Herman Grassman, however, there was Julius Pl\"ucker and his student Felix Klein, who studied the geometry of projective spaces and eventually led mathematics as a whole to abandon the primacy of Euclidean geometry in favor of a more egalitarian approach.
+
+\section{Lines in Lower Dimensional Spaces}
+
+In dimensions 1 and 2, the set of all lines is itself a projective space. All lines in $\mathbb{P}^1$ trivially constitute $\mathbb{P}^1$ and all lines in $\mathbb{P}^2$ are dual to the points in $\mathbb{P}^2$, and therefore dually constitute the projective plane. Lines through a single point in $\mathbb{P}^2$ form a pencil of lines, which is equivalent to a $\mathbb{P}^1$. (This case is due to the fact that any pencil of lines in $\mathbb{P}^2$ is uniquely determined by a choice of 2 lines, their unique intersection point being the center of the pencil, and any other line in this same pencil being a linear combination of the first 2: hence 2 coordinates suffice to determine any line in the pencil without any relations, hence a 1 dimensional projective space).
+
+\section{Lines in $\mathbb{P}^3$}
+
+Unlike lines in lower dimensional spaces, lines in $\mathbb{P}^3$ have non-trivial geometric structure (they are not equivalent to some $\mathbb{P}^n$), and this can be seen fairly easily with the help of Pl\"ucker coordinates. \\
+\\
+Any line is determined uniquely by 2 points, so let $P^1=[x_0,x_1,x_2,x_3]$ and $P^2=[y_0,y_1,y_2,y_3]$ be two points in $\mathbb{P}^3$, then set $l_{ij}=P^1_iP^2_j-P^1_jP^2_i=x_iy_j-x_jy_i$. Notice first that $l_{ij}=-l{ji}$ and $l_{ii}=0$, hence of the 16 possible combinations (4 choices for i times 4 choices for j) we are only left with 6 independent quantities determined by the two points: $[l_{23},l_{31},l_{12},l_{01},l_{02},l_{03}]$. Our line in $\mathbb{P}^3$ is thus represented by a 6 coordinate "point," which, lives in a projective space of dimension 5.\\
+\\
+To see this is well defined correspondence, let $\overline{P^1} = sP^1 + tP^2$ and $\overline{P^2}=s'P^1+t'P^2$ be two different points on the same line. Then 
+$$
+\overline{l_{ij}}=\overline{P^1_i}\overline{P^2_j}-\overline{P^1_j}\overline{P^2_i}=(sP^1_i+tP^2_i)(s'P^1_j+t'P^2_j)-(sP^1_j+tP^2_j)(s'P^1_i+t'P^2_i)=(st'-s't)l_{ij}
+$$
+And hence $\overline{l}$ is just a scalar multiple of $l$, so they are equivalent in $\mathbb{P}^5$, and every line in $\mathbb{P}^3$ has a unique (up to equivalence) representation in $\mathbb{P}^5$.\\
+\\
+In lower dimensions, a correspondence like the one above can be shown to be bijective, and as we've already seen lines in dimensions 2 and 1 correspond exactly to projective spaces and so have somewhat trivial geometry. The correspondence of 3 dimensional lines to points in $\mathbb{P}^5$, however, is not bijective. \\
+\\
+It is a fact that the dimension of the grassmanian $\text{Gr}(k,n)$ of $k$-dimensional linear subspaces of $n$-dimensional space is $k(n-k)$, so in our case lines in $\mathbb{P}^3$ form the grassmanian $\text{Gr}(2,4)$ which has dimension $2(4-2)=4$, 1 dimension lower than $\mathbb{P}^5$. This tells us that there is additional structure to the correspondence above, in other words we can expect to find some relation amongst the lines that accounts for 1 missing dimension. This relation will define what is sometimes referred to as the Klein Quadric.
+
+\section{The Klein Quadric}
+
+We can find our relation in the following way:\\
+\\
+If $P^1=[x_0,x_1,x_2,x_3]$ and $P^2=[y_0,y_1,y_2,y_3]$ are two points determining a line in $\mathbb{P}^3$ as before, then we can set up the following matrix:\\
+$$
+\begin{bmatrix}
+    x_0 & x_1 & x_2 & x_3 \\
+    y_0 & y_1 & y_2 & y_3 \\ 
+    x_0 & x_1 & x_2 & x_3 \\
+    y_0 & y_1 & y_2 & y_3  
+\end{bmatrix}
+$$
+By choosing linearly dependent rows, we know the determinant of this matrix is 0, so we get the following equation:\\
+$$
+x_0\begin{vmatrix}
+    y_1 & y_2 & y_3\\
+    x_1 & x_2 & x_3\\
+    y_1 & y_2 & y_3\\
+\end{vmatrix}-x_1\begin{vmatrix}
+    y_0 & y_2 & y_3\\
+    x_0 & x_2 & x_3\\
+    y_0 & y_2 & y_3\\
+\end{vmatrix}+ x_2\begin{vmatrix}
+    y_0 & y_1 & y_3\\
+    x_0 & x_1 & x_3\\
+    y_0 & y_1 & y_3\\
+\end{vmatrix} - x_3\begin{vmatrix}
+    y_0 & y_1 & y_2\\
+    x_0 & x_1 & x_2\\
+    y_0 & y_1 & y_2\\
+\end{vmatrix} = 0
+$$\\
+$$
+x_0\Bigl ( y_1(l_{23})-y_2(l_{13})+y_3(l_{12})\Bigr )-x_1\Bigl ( y_1(l_{23})-y_2(l_{13})+y_3(l_{12})\Bigr ) +x_2\Bigl ( y_1(l_{23})-y_2(l_{13})+y_3(l_{12})\Bigr ) -x_3\Bigl ( y_1(l_{23})-y_2(l_{13})+y_3(l_{12})\Bigr )=0
+$$
+
+$$
+2(l_{01}l_{23} + l_{02}l_{13}+l_{03}l_{12})=0
+$$
+Which as a homogeneous equation is equivalent to 
+$$
+l_{01}l_{23} + l_{02}l_{13}+l_{03}l_{12}=0
+$$\\
+This is a homogeneous equation of degree 2, and hence a quadric, in $\mathbb{P}^5$ that all lines in $\mathbb{P}^3$ satisfy.
+
+\section{Properties of the Klein Quadric}
+
+The fascinating properties of this quadric, $Q$, arise from the fact that the Pl\"ucker correspondence of lines in $\mathbb{P}^3$ to points in $\mathbb{P}^5$ is incidence preserving. \\
+\\
+From this we get that two intersecting lines in $\mathbb{P}^3$ are mapped to points that lie on a line contained entirely in $Q$.\\
+\\
+All lines in $\mathbb{P}^3$ through a single point are thus mapped to a set of points in $Q$ that are all mutually colinear, in otherwords a plane contained in $Q$.\\
+\\
+Similarly, if you fix a plane in $\mathbb{P}^3$, all lines in that plane all intersect and are hence mapped again to a set of mutually colinear points, another type of plane in $Q$\\
+\\
+Thus we get two families of planes living in $Q$, those arising from points and those from planes (these are sometimes called "latins" and "greeks")\\
+\\
+Two planes from the same family have the interesting property that they meet in $Q$ at exactly 1 point! Take two points in $\mathbb{P}^3$ (that give us two planes in one family in $Q$), these span a unique line that corresponds to a single point in $Q$ contained in both planes. Similarly take two planes in $\mathbb{P}^3$. These intersect on a unique line, corresponding to a unique point in $Q$!
+
+
+
+\end{document}
